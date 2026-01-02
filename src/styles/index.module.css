@@ -1,0 +1,99 @@
+.page {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-lg);
+  font-family: var(--font-sans);
+  color: var(--foreground);
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.pageTitle {
+  font-size: var(--text-3xl);
+  font-weight: 600;
+  margin-bottom: var(--space-md);
+  text-align: center;
+}
+
+.noPosts {
+  font-size: var(--text-base);
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.postsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-lg);
+}
+
+.postCard {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.postCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.postImage {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.postContent {
+  padding: var(--space-md);
+}
+
+.postTitle {
+  font-size: var(--text-xl);
+  font-weight: 600;
+  margin-bottom: var(--space-xs);
+}
+
+.postSummary {
+  font-size: var(--text-base);
+  color: var(--text-muted);
+  margin-bottom: var(--space-sm);
+}
+
+.authorText {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+  .postsGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .postImage {
+    height: 150px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1200px) {
+  .postsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+
+  .postImage {
+    height: 170px;
+  }
+}
