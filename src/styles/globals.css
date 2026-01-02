@@ -1,26 +1,331 @@
-@import "tailwindcss";
-
+/* =========================
+   🌍 ROOT VARIABLES
+========================= */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* 🎨 COLORS */
+  --white: #ffffff;
+  --black: #000000;
+
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2933;
+  --gray-900: #111827;
+
+  --primary: #2563eb;
+  --primary-light: #3b82f6;
+  --primary-dark: #1e40af;
+
+  --secondary: #9333ea;
+  --success: #16a34a;
+  --warning: #f59e0b;
+  --danger: #dc2626;
+  --info: #0ea5e9;
+
+  /* 🌗 BACKGROUNDS */
+  --bg-light: #ffffff;
+  --bg-muted: #f9fafb;
+  --bg-dark: #0f172a;
+  --bg-card: #ffffff;
+  --bg-overlay: rgba(0, 0, 0, 0.5);
+
+  /* 🌈 GRADIENTS */
+  --gradient-primary: linear-gradient(135deg, #2563eb, #9333ea);
+  --gradient-dark: linear-gradient(135deg, #020617, #1e293b);
+  --gradient-light: linear-gradient(135deg, #f9fafb, #e5e7eb);
+
+  /* 🖋️ TEXT */
+  --text-light: #ffffff;
+  --text-dark: #111827;
+  --text-muted: #6b7280;
+
+  /* 🔤 FONT FAMILIES */
+  --font-sans: "Inter", Arial, Helvetica, sans-serif;
+  --font-serif: "Georgia", serif;
+  --font-mono: "Courier New", monospace;
+  --font-display: "Poppins", sans-serif;
+
+  /* 🔠 FONT SIZES */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+
+  /* 📏 SPACING */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+
+  /* 🧱 BORDERS */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+
+  /* 🌫️ SHADOWS */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,0.15);
+
+  /* 🎯 DEFAULT THEME */
+  --background: var(--bg-light);
+  --foreground: var(--text-dark);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* =========================
+   🌗 DARK MODE VARIABLES
+   (ushyiramo class="dark" kuri body)
+========================= */
+.dark {
+  --background: var(--bg-dark);
+  --foreground: var(--text-light);
+  --bg-card: #020617;
+  --text-muted: #9ca3af;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* =========================
+   🌐 GLOBAL RESET
+========================= */
+html, body {
+  max-width: 100vw;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
+  background-color: var(--background);
+  color: var(--foreground);
+
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  overflow-x: hidden;
+  touch-action: manipulation;
 }
 
 body {
-  background: var(--background);
+  user-select: none;
+}
+
+/* =========================
+   📦 BOX SIZING
+========================= */
+html {
+  box-sizing: border-box;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+/* =========================
+   🔗 LINKS
+========================= */
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   🎯 UTILITIES (WAZIKORESHA)
+========================= */
+
+/* Backgrounds */
+.bg-light { background: var(--bg-light); }
+.bg-dark { background: var(--bg-dark); }
+.bg-card { background: var(--bg-card); }
+.bg-gradient-primary { background: var(--gradient-primary); }
+.bg-gradient-dark { background: var(--gradient-dark); }
+
+/* Text */
+.text-primary { color: var(--primary); }
+.text-muted { color: var(--text-muted); }
+.text-success { color: var(--success); }
+.text-danger { color: var(--danger); }
+
+/* Fonts */
+.font-sans { font-family: var(--font-sans); }
+.font-serif { font-family: var(--font-serif); }
+.font-mono { font-family: var(--font-mono); }
+.font-display { font-family: var(--font-display); }
+
+/* Font sizes */
+.text-xs { font-size: var(--text-xs); }
+.text-sm { font-size: var(--text-sm); }
+.text-lg { font-size: var(--text-lg); }
+.text-xl { font-size: var(--text-xl); }
+.text-2xl { font-size: var(--text-2xl); }
+.text-4xl { font-size: var(--text-4xl); }
+
+/* Shadows */
+.shadow-sm { box-shadow: var(--shadow-sm); }
+.shadow-md { box-shadow: var(--shadow-md); }
+.shadow-lg { box-shadow: var(--shadow-lg); }
+
+/* Radius */
+.rounded-sm { border-radius: var(--radius-sm); }
+.rounded-md { border-radius: var(--radius-md); }
+.rounded-lg { border-radius: var(--radius-lg); }
+
+/* =========================
+   🔕 FOCUS & ZOOM
+========================= */
+:focus {
+  outline: none;
+}
+html {
+  overscroll-behavior: none;
+  touch-action: none;
+}
+/* =========================
+   🎛️ THEME SWITCHER (RESPONSIVE)
+========================= */
+.themeBox {
+  position: fixed;
+  right: 16px;
+  bottom: 0px;
+  background: var(--bg-card);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 12px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  z-index: 9999;
+  transition: all 0.3s ease;
+}
+
+/* Button */
+.themeBox button {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Colors */
+.colors {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.colors span {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 1px solid var(--gray-300);
+}
+
+/* Color presets */
+.colors span:nth-child(2) { background: #2563eb; }
+.colors span:nth-child(3) { background: #16a34a; }
+.colors span:nth-child(4) { background: #9333ea; }
+.colors span:nth-child(5) { background: #dc2626; }
+
+/* Fonts & size */
+.fonts,
+.fontSize {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.themeBox select {
+  border-radius: var(--radius-sm);
+  padding: 4px 6px;
+  background: var(--bg-light);
+  color: var(--foreground);
+  font-size: 0.85rem;
+}
+/* =========================
+   🌗 INPUTS & SELECT FIX (DARK/LIGHT)
+========================= */
+.themeBox input,
+.themeBox select,
+.themeBox textarea {
+  background: var(--bg-card);
+  color: var(--foreground);
+  border: 1px solid var(--gray-300);
+}
+
+.themeBox input::placeholder {
+  color: var(--text-muted);
+}
+
+/* =========================
+   📱 MOBILE
+========================= */
+@media (max-width: 480px) {
+  .themeBox {
+    right: 0px;
+    width: 100%;
+    bottom: 0px;
+    padding: 10px;
+    gap: 8px;
+    flex-wrap: wrap;
+    max-width: 90vw;
+  }
+
+  .themeBox button {
+    padding: 8px;
+  }
+
+  .colors span {
+    width: 14px;
+    height: 14px;
+  }
+
+  .themeBox select {
+    font-size: 0.8rem;
+    padding: 4px;
+  }
+}
+
+/* =========================
+   📱 TABLET
+========================= */
+@media (min-width: 481px) and (max-width: 768px) {
+  .themeBox {
+    right: 0px;
+    bottom: 0px;
+    padding: 12px;
+    gap: 10px;
+  }
+}
+
+/* =========================
+   🖥️ LARGE SCREENS
+========================= */
+@media (min-width: 1200px) {
+  .themeBox {
+    padding: 14px 16px;
+    gap: 14px;
+  }
+
+  .themeBox select {
+    font-size: 0.9rem;
+  }
 }
