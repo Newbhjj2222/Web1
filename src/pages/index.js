@@ -1,6 +1,6 @@
 'use client';
 import Head from "next/head";
-import React from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { db } from "../components/firebase";
 import { collection, query, orderBy, getDocs } from "firebase/firestore";
@@ -45,10 +45,20 @@ export async function getServerSideProps() {
 // React Component
 export default function Home({ trendingPosts }) {
   const router = useRouter();
+  const POSTS_PER_PAGE = 10;
+
+  // State to track number of visible posts
+  const [visibleCount, setVisibleCount] = useState(POSTS_PER_PAGE);
 
   const handlePostClick = (id) => {
     router.push(`/post/${id}`);
   };
+
+  const handleLoadMore = () => {
+    setVisibleCount((prev) => prev + POSTS_PER_PAGE);
+  };
+
+  const visiblePosts = trendingPosts.slice(0, visibleCount);
 
   return (
     <>
@@ -66,7 +76,7 @@ export default function Home({ trendingPosts }) {
           )}
 
           <div className={styles.postsGrid}>
-            {trendingPosts.map((post) => (
+            {visiblePosts.map((post) => (
               <div
                 key={post.id}
                 className={styles.postCard}
@@ -89,6 +99,15 @@ export default function Home({ trendingPosts }) {
               </div>
             ))}
           </div>
+
+          {/* Load More Button */}
+          {visibleCount < trendingPosts.length && (
+            <div className={styles.loadMoreWrapper}>
+              <button className={styles.loadMoreBtn} onClick={handleLoadMore}>
+                Load More
+              </button>
+            </div>
+          )}
         </main>
       </div>
     </>
