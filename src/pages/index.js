@@ -4,7 +4,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { db } from "../components/firebase";
 import { collection, query, orderBy, getDocs } from "firebase/firestore";
-import styles from "../components/index.module.css";
+import styles from "@/styles/index.module.css";
 
 // Server-side data fetching
 export async function getServerSideProps() {
